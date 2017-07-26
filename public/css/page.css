@@ -1,0 +1,49 @@
+.icon-img{
+    width: 80px;
+    height: 80px;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    -ie-user-select: none;
+    user-select: none;
+
+}
+.icon-text{
+    -moz-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    -ie-user-select: none;
+    user-select: none;
+}
+
+
+.panel-option:hover{
+    background: #c2e5b3;
+    font-weight: 500;
+
+}
+.panel-option:active{
+    background: #a2c593;
+    font-weight: 500;
+
+}
+.panel-option{
+    background: transparent;
+    font-weight: 500;
+    cursor: pointer;
+    border: #aacb9c double;
+    moz-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    -ie-user-select: none;
+    user-select: none;
+}
+
+.badge{
+    background-color: #67b168;
+    font-size: 1.2em;
+}
+
+.form-panel{
+    padding: 5px;
+}
