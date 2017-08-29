@@ -8,4 +8,5 @@ class Ciudad extends Model
 {
     //
     protected $table = "ciudad";
+
 }

@@ -11,8 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/page.css') }}" rel="stylesheet">
+    <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/page.css') }}" rel="stylesheet">-->
+    <link href="{{asset('css/cerulean.css')}}" rel="stylesheet" />
 </head>
 <body>
     <div id="app">

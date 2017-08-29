@@ -9,35 +9,27 @@
 
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-3" onclick="javascript:window.location='{{url('/solicitude/list')}}'">
+                            <div class="col-md-3" onclick="javascript:window.location='{{route('solicitudes_admin')}}'">
                                 <div class="panel panel-success panel-option">
                                     <div class="panel-body text-center">
                                         @if($cant_solicitudes>0)
                                             <span class="badge affix success pull-right">{{$cant_solicitudes}}</span>
                                         @endif
                                         <img src="{{asset('img/clipboard.svg')}}" class="icon-img"/>
-                                        <span class="icon-text"><br>Mis solicitudes permiso forestal</span>
+                                        <span class="icon-text"><br>Solicitudes permiso forestal</span>
 
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3" onclick="javascript:window.location='{{url('/solicitude')}}'">
-                                <div class="panel panel-success panel-option">
-                                    <div class="panel-body text-center">
-                                        <img src="{{asset('img/trees.svg')}}" class="icon-img"/>
 
-                                        <span class="icon-text"><br>Crear solicitud permiso forestal</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3" onclick="javascript:window.location='{{url('/report/list')}}'">
+                            <div class="col-md-3" onclick="javascript:window.location='{{route('denuncias_admin')}}'">
                                 <div class="panel panel-success panel-option">
                                     <div class="panel-body text-center">
                                         @if($cant_denuncias>0)
                                             <span class="badge affix success pull-right">{{$cant_denuncias}}</span>
                                         @endif
                                         <img src="{{asset('img/clipboard.svg')}}" class="icon-img"/>
-                                        <span class="icon-text"><br>Mis denuncias ciudadanas</span>
+                                        <span class="icon-text"><br>Denuncias ciudadanas</span>
 
                                     </div>
                                 </div>
@@ -73,9 +65,4 @@
         </div>
     </div>
     </div>
-@endsection
-
-
-@section('scripts')
-
 @endsection

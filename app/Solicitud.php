@@ -25,7 +25,19 @@ class Solicitud extends Model
         'barrio_predio'         ,
         'vereda_predio'         ,
         'corregimiento_predio'  ,
-        'ciudad_predio' ];
+        'ciudad_predio',
+        // admin values
+        "concepto_tecnico",
+        "plazo",
+        'corte_razo',
+        'corte_parcial',
+        'recorte_raices',
+        'podas_parcial',
+        'traslado',
+        'fecha_visita',
+        'observaciones',
+        'estado',
+         ];
 
 
     public function SolicitudArbol(){

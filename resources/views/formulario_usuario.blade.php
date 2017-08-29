@@ -337,15 +337,15 @@
                                                                 <tr id="1">
                                                                     <td class="form-group-sm"><input
                                                                                 class="form-control"
-                                                                                name="arbol_especie[]">
+                                                                                name="arbol_especie[]"  required>
                                                                     </td>
                                                                     <td class="form-group-sm"><input
                                                                                 class="form-control"
-                                                                                name="arbol_cantidad[]">
+                                                                                name="arbol_cantidad[]" required>
                                                                     </td>
                                                                     <td class="form-group-sm"><input
                                                                                 class="form-control"
-                                                                                name="arbol_altura[]">
+                                                                                name="arbol_altura[]" required>
                                                                     </td>
                                                                     <td class="form-group-sm"><select
                                                                                 class="form-control"
@@ -515,11 +515,11 @@
         function addRow() {
             i = i + 1;
             $("#tbody").append('<tr id="' + i + '">' +
-                '<td class="form-group-sm"><input class="form-control" name="arbol_especie[]">' +
+                '<td class="form-group-sm"><input class="form-control" name="arbol_especie[]" required>' +
                 '</td>' +
-                '<td class="form-group-sm"><input class="form-control" name="arbol_cantidad[]">' +
+                '<td class="form-group-sm"><input class="form-control" name="arbol_cantidad[]" required>' +
                 '</td>' +
-                '<td class="form-group-sm"><input class="form-control" name="arbol_altura[]">' +
+                '<td class="form-group-sm"><input class="form-control" name="arbol_altura[]" required>' +
                 '</td>' +
                 '<td class="form-group-sm"><select class="form-control" name="arbol_accion[]">' +
                 '<option value="Tala">Tala</option>' +

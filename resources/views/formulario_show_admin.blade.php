@@ -287,7 +287,7 @@
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <!--<div class="col-md-6">
                                                 <div class="panel panel-primary">
                                                     <div class="panel-body">
                                                         <div class="row">
@@ -350,8 +350,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
+                                            </div>-->
+                                            <div class="col-md-12">
                                                 <table class="table table-striped table-hover ">
                                                     <thead>
                                                     <tr>
@@ -375,264 +375,291 @@
                                                     </tbody>
                                                 </table>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            @if($solicitud->estado != 'Pendiente')
-                                <div class="col-md-12">
-                                    <div class="panel panel-success">
-                                        <div class="panel-heading">
-                                            <h1 class="panel-title text-center">ESPACIO RESERVADO PARA CORPONOR</h1>
-                                        </div>
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="focusedInput">CONCEPTO
-                                                            TÉCNICO
-                                                            (Aplica sólo para las solicitudes que correspondan a la
-                                                            poda de
-                                                            árboles, en el caso de tala, trasplante
-                                                            o reubicación, se debe anexar informe técnico, así mismo
-                                                            para la
-                                                            ejecución de obras públicas o privadas / proyectos y por
-                                                            su
-                                                            estado sanitario, daños mecánicos o árboles
-                                                            caídos):</label>
-                                                        <textarea class="form-control" id="concepto_tecnico"
-                                                                  rows="4" required
-                                                                  name="concepto_tecnico">{{$solicitud->concepto_tecnico}}</textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label"
-                                                               for="focusedInput">Plazo:</label>
-                                                        <input class="form-control" id="focusedInput" type="text"
-                                                               name="plazo" value="{{$solicitud->plazo}}" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <center>
-                                                        <h4>VIABILIDAD AMBIENTAL</h4>
-                                                    </center>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <table class="table table-striped table-bordered table-condensed">
-                                                        <tbody>
-                                                        <tr style="font-weight: bold;text-align: center">
-                                                            <td>Corte raso</td>
-                                                            <td>Corte Parcial</td>
-                                                            <td>Recorte de raíces</td>
-                                                            <td>Poda parcial</td>
-                                                            <td>Traslado</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="form-group form-group-sm">
-                                                                    <input type="text" class="form-control"
-                                                                           name="corte_razo"
-                                                                           value="{{$solicitud->corte_razo}}">
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="form-group form-group-sm">
-                                                                    <input type="text" class="form-control"
-                                                                           name="corte_parcial"
-                                                                           value="{{$solicitud->corte_parcial}}">
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="form-group form-group-sm">
-                                                                    <input type="text" class="form-control"
-                                                                           name="recorte_raices"
-                                                                           value="{{$solicitud->recorte_raices}}">
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="form-group form-group-sm">
-                                                                    <input type="text" class="form-control"
-                                                                           name="podas_parcial"
-                                                                           value="{{$solicitud->podas_parcial}}">
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="form-group form-group-sm">
-                                                                    <input type="text" class="form-control"
-                                                                           name="traslado"
-                                                                           value="{{$solicitud->traslado}}">
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <center>
-                                                        <h4>COMPENSACIÓN</h4>
-                                                    </center>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <table class="table table-striped table-bordered table-condensed ">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>Numero</th>
-                                                            <th>Especie</th>
-                                                            <th>Lugar</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        @if($solicitud->estado != 'Pendiente')
-                                                            <?php
-                                                            $compensaciones = \Corponor\SolicitudCompensacion::where('solicitud_id', $solicitud->id)->get();
-                                                            foreach ($compensaciones as $comp) {
-                                                            ?>
-                                                            <tr>
-                                                                <td>
-                                                                    {{$comp->compensacion_numero}}
-                                                                </td>
-                                                                <td>
-                                                                    {{$comp->compensacion_especie}}
-                                                                </td>
-                                                                <td>
-                                                                    {{$comp->compensacion_lugar}}
-                                                                </td>
-                                                            </tr>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        @else
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_numero[]">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_especie[]">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_lugar[]">
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_numero[]">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_especie[]">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_lugar[]">
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_numero[]">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_especie[]">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_lugar[]">
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_numero[]">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_especie[]">
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div class="form-group form-group-sm">
-                                                                        <input type="text" class="form-control"
-                                                                               name="compensacion_lugar[]">
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        @endif
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="focusedInput">Fecha de la
-                                                            visita:</label>
-                                                        <input class="form-control" id="focusedInput" type="text"
-                                                               name="fecha_visita" value="" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label"
-                                                               for="focusedInput">Observaciones:</label>
-                                                        <textarea class="form-control" name="observaciones"
-                                                                  rows="5"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="focusedInput">Cambiar
-                                                            estado de la solicitud a:</label>
-                                                        <select class="form-control" name="estado">
-                                                            <option value="Aprobado - Por registrar pago">Aprobado -
-                                                                Por registrar pago
-                                                            </option>
-                                                            <option value="Rechazado">Rechazado</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                            @if($solicitud->estado == 'Pendiente')
+                                <form method="post" action="{{url('admin/solicitude/save')}}"
+                                      enctype="multipart/form-data">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="id" value="{{$solicitud->id}}"/>
+                                    @endif
+                                    <div class="col-md-12">
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <h1 class="panel-title text-center">ESPACIO RESERVADO PARA CORPONOR</h1>
                                             </div>
-                                        </div>
-                                        @if($solicitud->estado == 'Pendiente')
-                                            <div class="panel-footer">
+                                            <div class="panel-body">
                                                 <div class="row">
                                                     <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="focusedInput">CONCEPTO
+                                                                TÉCNICO
+                                                                (Aplica sólo para las solicitudes que correspondan a la
+                                                                poda de
+                                                                árboles, en el caso de tala, trasplante
+                                                                o reubicación, se debe anexar informe técnico, así mismo
+                                                                para la
+                                                                ejecución de obras públicas o privadas / proyectos y por
+                                                                su
+                                                                estado sanitario, daños mecánicos o árboles
+                                                                caídos):</label>
+                                                            <textarea class="form-control" id="concepto_tecnico"
+                                                                      rows="4" required
+                                                                      name="concepto_tecnico">{{$solicitud->concepto_tecnico}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label"
+                                                                   for="focusedInput">Plazo:</label>
+                                                            <input class="form-control" id="focusedInput" type="text"
+                                                                   name="plazo" value="{{$solicitud->plazo}}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
                                                         <center>
-                                                            <button class="btn btn-success" type="submit">GUARDAR
-                                                                RESPUESTA SOLICITUD
-                                                            </button>
+                                                            <h4>VIABILIDAD AMBIENTAL</h4>
                                                         </center>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <table class="table table-striped table-bordered table-condensed">
+                                                            <tbody>
+                                                            <tr style="font-weight: bold;text-align: center">
+                                                                <td>Corte raso</td>
+                                                                <td>Corte Parcial</td>
+                                                                <td>Recorte de raíces</td>
+                                                                <td>Poda parcial</td>
+                                                                <td>Traslado</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-group form-group-sm">
+                                                                        <input type="text" class="form-control"
+                                                                               name="corte_razo"
+                                                                               value="{{$solicitud->corte_razo}}">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group form-group-sm">
+                                                                        <input type="text" class="form-control"
+                                                                               name="corte_parcial"
+                                                                               value="{{$solicitud->corte_parcial}}">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group form-group-sm">
+                                                                        <input type="text" class="form-control"
+                                                                               name="recorte_raices"
+                                                                               value="{{$solicitud->recorte_raices}}">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group form-group-sm">
+                                                                        <input type="text" class="form-control"
+                                                                               name="podas_parcial"
+                                                                               value="{{$solicitud->podas_parcial}}">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-group form-group-sm">
+                                                                        <input type="text" class="form-control"
+                                                                               name="traslado"
+                                                                               value="{{$solicitud->traslado}}">
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <center>
+                                                            <h4>COMPENSACIÓN</h4>
+                                                        </center>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <table class="table table-striped table-bordered table-condensed ">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Numero</th>
+                                                                <th>Especie</th>
+                                                                <th>Lugar</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @if($solicitud->estado != 'Pendiente')
+                                                                <?php
+                                                                $compensaciones = \Corponor\SolicitudCompensacion::where('solicitud_id', $solicitud->id)->get();
+                                                                foreach ($compensaciones as $comp) {
+                                                                ?>
+                                                                <tr>
+                                                                    <td>
+                                                                        {{$comp->compensacion_numero}}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{$comp->compensacion_especie}}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{$comp->compensacion_lugar}}
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            @else
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_numero[]">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_especie[]">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_lugar[]">
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_numero[]">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_especie[]">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_lugar[]">
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_numero[]">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_especie[]">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_lugar[]">
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_numero[]">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_especie[]">
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group form-group-sm">
+                                                                            <input type="text" class="form-control"
+                                                                                   name="compensacion_lugar[]">
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            @endif
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="focusedInput">Fecha de la
+                                                                visita:</label>
+                                                            <input class="form-control" id="focusedInput" type="text"
+                                                                   name="fecha_visita" value="" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="focusedInput">Observaciones:</label>
+                                                            <textarea class="form-control" name="observaciones"
+                                                                      rows="5"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="focusedInput">Cambiar
+                                                                estado de la solicitud a:</label>
+                                                            <select class="form-control" onchange="cambioEstado()" name="estado" id="estado">
+                                                                <option value="Aprobado - Por registrar pago">Aprobado -
+                                                                    Por registrar pago
+                                                                </option>
+                                                                <option value="Rechazado">Rechazado</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    @if($solicitud->estado == "Pendiente")
+                                                        <script>
+                                                            function cambioEstado() {
+                                                                if($('#estado').val()=="Rechazado"){
+                                                                    $('#soporte_pago').removeAttr('required');
+                                                                    $("#rowSoporte").hide();
+                                                                }else{
+                                                                    $("#rowSoporte").show();
+                                                                    $('#soporte_pago').attr('required','required');
+                                                                }
+                                                            }
+                                                        </script>
+                                                    @endif
+                                                    <div class="col-md-12" id="rowSoporte">
+                                                        <div class="form-group">
+                                                            <label class="control-label"
+                                                                   for="focusedInput">Adjunte el documento para que el
+                                                                cliente realice el pago correspondiente:</label>
+                                                            <input class="form-control" id="soporte_pago" type="file"
+                                                                   name="soporte_pago" value="" required>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
+                                            @if($solicitud->estado == 'Pendiente')
+                                                <div class="panel-footer">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <center>
+                                                                <button class="btn btn-success" type="submit">GUARDAR
+                                                                    RESPUESTA SOLICITUD
+                                                                </button>
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
-                            @endif
+                                </form>
                         </div>
                     </div>
                 </div>
