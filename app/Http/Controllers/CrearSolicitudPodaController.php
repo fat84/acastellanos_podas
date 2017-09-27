@@ -25,19 +25,47 @@ class CrearSolicitudPodaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $user = \Auth::user();
-        $solicitudes = Solicitud::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(15);
+        $solicitudes = null;
+        $search = $request->search;
+        if($search!=null && $search!=''){
+            $solicitudes = Solicitud::
+            whereRaw(" user_id = '".$user->id."' 
+            and ( id like '%".$search."%' or estado like '%".$search."%'  or
+             razon_social like '%".$search."%' or nombre_predio like '%".$search."%' ) ) ")
+                ->orderBy('id', 'desc')->paginate(15);
+
+            $solicitudes->appends(['search' => $search]);
+        }else{
+            $solicitudes =  Solicitud::where('user_id', $user->id)->orderBy('id', 'desc')->paginate(15);
+        }
         return view('lista_solicitudes', ['solicitudes' => $solicitudes]);
     }
 
-    public function indexAdmin()
+    public function indexAdmin(Request $request)
     {
         //
         $user = \Auth::user();
-        $solicitudes = Solicitud::orderBy('id', 'desc')->paginate(15);
+        $search = $request->search;
+        $solicitudes = null;
+        if ($user->role != "admin") {
+            return redirect('/solicitude/list');
+        }
+        if ($search != null && $search != '') {
+            $solicitudes = Solicitud::where('created_at', 'LIKE', '%' . $request->search . '%')
+                ->orWhere('id', 'like', '%' . $request->search . '%')
+                ->orWhere('estado', 'like', '%' . $request->search . '%')
+                ->orWhere('razon_social', 'like', '%' . $request->search . '%')
+                ->orWhere('nombre_predio', 'like', '%' . $request->search . '%')
+                ->orderBy('id', 'desc')->paginate(15);
+            $solicitudes->appends(['search' => $search]);
+        } else {
+            $solicitudes = Solicitud::orderBy('id', 'desc')->paginate(15);
+        }
+
         return view('lista_solicitudes', ['solicitudes' => $solicitudes]);
     }
 
@@ -109,7 +137,6 @@ class CrearSolicitudPodaController extends Controller
     {
         $usuario = \Auth::user();
         if ($usuario->role == "admin") {
-            dd($request);
             $solicitud = Solicitud::find($request->id);
             if ($solicitud != null) {
                 $solicitud->concepto_tecnico = $request->concepto_tecnico;
@@ -124,13 +151,11 @@ class CrearSolicitudPodaController extends Controller
                 $solicitud->estado = $request->estado;
 
                 if ($request->estado != 'Rechazado') {
-                    foreach ($request->file('soporte_pago') as $file) {
-                        $doc = $file;
-                        if ($doc != null) {
-                            $file_route = time() . '_' . $doc->getClientOriginalName();
-                            Storage::disk('documentos')->put($file_route, file_get_contents($doc->getRealPath()));
-                            $solicitud->soporte_pago = $file_route;
-                        }
+                    $doc = $request->file('soporte_pago');
+                    if ($doc != null) {
+                        $file_route = time() . '_' . $doc->getClientOriginalName();
+                        Storage::disk('documentos')->put($file_route, file_get_contents($doc->getRealPath()));
+                        $solicitud->soporte_pago = $file_route;
                     }
                 }
 
@@ -161,11 +186,12 @@ class CrearSolicitudPodaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public
+    function show($id)
     {
         //
         $solicitud = Solicitud::find($id);
-        if ($solicitud != null && $solicitud->user_id == \Auth::user()->id) {
+        if ($solicitud != null && ($solicitud->user_id == \Auth::user()->id || \Auth::user()->role == "admin")) {
             $compensacion = SolicitudCompensacion::where('solicitud_id', '=', $solicitud->id)->first();
             $ciudades = Ciudad::all();
             return view('formulario_show', ['solicitud' => $solicitud, 'ciudades' => $ciudades, 'compensacion' => $compensacion]);
@@ -181,7 +207,8 @@ class CrearSolicitudPodaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public
+    function edit($id)
     {
         //
     }
@@ -193,7 +220,8 @@ class CrearSolicitudPodaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public
+    function update(Request $request, $id)
     {
         //
     }
@@ -204,15 +232,17 @@ class CrearSolicitudPodaController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         //
     }
 
 
-    // ADMIN METODOS
+// ADMIN METODOS
 
-    public function procesar($id)
+    public
+    function procesar($id)
     {
         if (\Auth::user()->role == "admin") {
             //

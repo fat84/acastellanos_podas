@@ -10,14 +10,27 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
+                                <div class="pull-right">
+                                    <form class="navbar-form navbar-left" role="search" action="@if(Auth::user()->role=="admin"){{route('solicitudes_admin')}}@else{{url('/solicitude/list')}}@endif">
+                                        <div class="form-group">
+                                            <input type="text" name="search" class="form-control"
+                                                   value="@if(empty($search)==false){{$search}}@endif" placeholder="Buscar...">
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Buscar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <table class="table table-striped table-hover ">
                                     <thead>
                                     <tr>
-                                        <th>NO.</th>
+                                        <th>No.</th>
                                         <th>Fecha</th>
                                         <th>Solicitante</th>
                                         <th>Nombre predio</th>
-                                        <th>estado</th>
+                                        <th>Estado</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -51,8 +64,7 @@
                                                    href="{{route('solicitudes_procesar_admin',['id'=>$solicitud->id])}}">Procesar</a>
 
                                                 @elseif($solicitud->estado == "Aprobado - Por registrar pago" && Auth::user()->role == "admin")
-                                                    href="{{route('solicitudes_procesar_admin',['id'=>$solicitud->id])}}
-                                                    ">Subir pdf para pago</a>
+                                                    href="{{route('solicitudes_procesar_admin',['id'=>$solicitud->id])}}">Ver</a>
                                                 @elseif($solicitud->estado != "Pendiente" && Auth::user()->role=="admin")
                                                     href="{{route('solicitudes_procesar_admin',['id'=>$solicitud->id])}}
                                                     ">Procesar</a>

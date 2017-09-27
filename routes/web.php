@@ -41,5 +41,5 @@ Route::get('/report/show/{id}','DenunciaController@show');
 Route::post('/report/save','DenunciaController@store');
 
 //Denuncias admin
-Route::get('/admin/report/list', 'DenunciaController@index')->name('denuncias_admin');
+Route::get('/admin/report/list', 'DenunciaController@indexAdmin')->name('denuncias_admin');
 

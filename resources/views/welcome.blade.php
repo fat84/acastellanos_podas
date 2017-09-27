@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
+    <head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+            
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,11 +13,12 @@
         <!-- Styles -->
         <style>
             html, body {
+            
                 background-image: url({{asset('img/bg01.jpeg')}});
                 background-color: white;
                 background-repeat: no-repeat;
                 background-size: cover;
-                color: #636b6f;
+                color: #022e44;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -53,7 +54,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #022e44;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -68,6 +69,7 @@
         </style>
     </head>
     <body>
+    
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -83,15 +85,19 @@
             <div class="content">
                 <div class="title m-b-md" style="font-size: 1.5em;">
                     <img src="{{asset('img/header-logo.png')}}" /><br/>
-                    Plataforma para el registro de podas
+                    Plataforma para proceso de tala/poda de arboles aislados<br>
+                    y denuncias ciudadanas.
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://laravel.com/docs">Documentacion</a>
+                    <a href="http://corponor.gov.co/">Corponor</a>
+                    <a href="http://www.minambiente.gov.co/">Minambiente</a>
+                    <br>
+                    <a href="https://es-la.facebook.com/corponor.nortedesantander/"  />Siguenos</a>
+                    <a href="https://es-la.facebook.com/corponor.nortedesantander/" title="Facebook"><img src="img/Facebook.png" alt="Facebook" />
+                    <a href="https://twitter.com/iniciarsesion?lang=es/" title="Twitter"><img src="img/Twitter.png" alt="Twitter" /></a>
+                                       
                 </div>
             </div>
         </div>

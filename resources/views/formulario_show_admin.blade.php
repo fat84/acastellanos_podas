@@ -598,21 +598,22 @@
                                                             <label class="control-label" for="focusedInput">Fecha de la
                                                                 visita:</label>
                                                             <input class="form-control" id="focusedInput" type="text"
-                                                                   name="fecha_visita" value="" required>
+                                                                   name="fecha_visita" value="@if($solicitud->fecha_visita !=null){{$solicitud->fecha_visita}}@endif" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="control-label" for="focusedInput">Observaciones:</label>
                                                             <textarea class="form-control" name="observaciones"
-                                                                      rows="5"></textarea>
+                                                                      rows="5">@if($solicitud->observaciones !=null){{$solicitud->observaciones}}@endif</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="control-label" for="focusedInput">Cambiar
                                                                 estado de la solicitud a:</label>
-                                                            <select class="form-control" onchange="cambioEstado()" name="estado" id="estado">
+                                                            <select class="form-control" onchange="cambioEstado()"
+                                                                    name="estado" id="estado">
                                                                 <option value="Aprobado - Por registrar pago">Aprobado -
                                                                     Por registrar pago
                                                                 </option>
@@ -621,27 +622,37 @@
                                                         </div>
                                                     </div>
                                                     @if($solicitud->estado == "Pendiente")
+                                                        <div class="col-md-12" id="rowSoporte">
+                                                            <div class="form-group">
+                                                                <label class="control-label"
+                                                                       for="focusedInput">Adjunte el documento para que
+                                                                    el
+                                                                    cliente realice el pago correspondiente:</label>
+                                                                <input class="form-control" id="soporte_pago"
+                                                                       type="file"
+                                                                       name="soporte_pago" value="" required>
+                                                            </div>
+                                                        </div>
                                                         <script>
                                                             function cambioEstado() {
-                                                                if($('#estado').val()=="Rechazado"){
+                                                                if ($('#estado').val() == "Rechazado") {
                                                                     $('#soporte_pago').removeAttr('required');
                                                                     $("#rowSoporte").hide();
-                                                                }else{
+                                                                } else {
                                                                     $("#rowSoporte").show();
-                                                                    $('#soporte_pago').attr('required','required');
+                                                                    $('#soporte_pago').attr('required', 'required');
                                                                 }
                                                             }
                                                         </script>
-                                                    @endif
-                                                    <div class="col-md-12" id="rowSoporte">
-                                                        <div class="form-group">
-                                                            <label class="control-label"
-                                                                   for="focusedInput">Adjunte el documento para que el
-                                                                cliente realice el pago correspondiente:</label>
-                                                            <input class="form-control" id="soporte_pago" type="file"
-                                                                   name="soporte_pago" value="" required>
+                                                    @elseif($solicitud->estado != 'Pendiente' && $solicitud->soporte_pago != null)
+                                                        <div class="col-md-12" id="rowSoporte" style="font-size: 22px">
+                                                            <br><br>
+                                                            Descargue el documento adjunto realizar pago correspondiente desde el siguiente enlace:
+                                                            <a href="{{url('documentos/'.$solicitud->soporte_pago)}}"
+                                                               target="_blank">{{$solicitud->soporte_pago}}</a>
                                                         </div>
-                                                    </div>
+                                                    @endif
+
                                                 </div>
                                             </div>
                                             @if($solicitud->estado == 'Pendiente')

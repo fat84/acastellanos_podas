@@ -592,7 +592,7 @@
                                                         <label class="control-label" for="focusedInput">Fecha de la
                                                             visita:</label>
                                                         <input class="form-control" id="focusedInput" type="text"
-                                                               name="fecha_visita" value="" required>
+                                                               name="fecha_visita" value="@if($solicitud->fecha_visita!=null){{$solicitud->fecha_visita}}@endif" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
@@ -600,14 +600,14 @@
                                                         <label class="control-label"
                                                                for="focusedInput">Observaciones:</label>
                                                         <textarea class="form-control" name="observaciones"
-                                                                  rows="5"></textarea>
+                                                                  rows="5">@if($solicitud->observaciones!=null){{$solicitud->observaciones}}@endif</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="control-label" for="focusedInput">Cambiar
                                                             estado de la solicitud a:</label>
-                                                        <select class="form-control" name="estado">
+                                                        <select class="form-control" name="estado" @if($solicitud->estado != 'Pendiente') disabled @endif >
                                                             <option value="Aprobado - Por registrar pago">Aprobado -
                                                                 Por registrar pago
                                                             </option>
@@ -617,6 +617,15 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @if($solicitud->soporte_pago != null)
+                                        <div class="col-md-12" id="rowSoporte">
+                                            <div class="form-group">
+                                                <label class="control-label"
+                                                       for="focusedInput">Documento adjunto realizar pago correspondiente:</label>
+                                                <a href="{{url('documentos/'.$solicitud->soporte_pago)}}" target="_blank">{{$solicitud->soporte_pago}}</a>
+                                            </div>
+                                        </div>
+                                        @endif
                                         @if($solicitud->estado == 'Pendiente')
                                             <div class="panel-footer">
                                                 <div class="row">

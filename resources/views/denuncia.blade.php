@@ -52,8 +52,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <b class="text-center">ES NECESARIO SUBIR ARCHIVOS ADJUNTOS</b><br>
-                                    Los archivos que adjunte nos servirán de base probatorio para poder establecer
+                                    <b class="text-center">ES NECESARIO ADJUNTAR ARCHIVOS</b><br>
+                                    Los archivos que adjunte nos servirán de base probatoria para poder establecer
                                     la gravedad de los hechos y la veracidad de los mismos.
                                     <br>
                                 </div>

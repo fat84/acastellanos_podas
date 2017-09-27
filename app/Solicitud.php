@@ -29,6 +29,7 @@ class Solicitud extends Model
         // admin values
         "concepto_tecnico",
         "plazo",
+        'soporte_pago',
         'corte_razo',
         'corte_parcial',
         'recorte_raices',

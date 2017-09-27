@@ -6,6 +6,7 @@ use Corponor\Ciudad;
 use Corponor\Denuncia;
 use Corponor\DenunciaArchivo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class DenunciaController extends Controller
@@ -21,19 +22,42 @@ class DenunciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $user = \Auth::user()->id;
-        $denuncias = Denuncia::where('user_id', '=', $user)->orderBy('id','desc')->paginate(15);
+        $search = $request->search;
+        if($search != null && $search!= ''){
+            $denuncias = Denuncia::whereRaw("user_id = '".$user."' and ( id like '%".$search."%' or created_at like '%".$search."%' or direccion like '%".$search."%' )")
+                ->orderBy('id','desc')
+                ->paginate(15);
+            $denuncias->appends(['search' => $search]);
+        }else{
+            $denuncias = Denuncia::where('user_id', '=', $user)->orderBy('id','desc')->paginate(15);
+        }
+
         return view('lista_denuncias', ['denuncias'=>$denuncias]);
     }
-    public function indexAdmin()
+    public function indexAdmin(Request $request)
     {
-        //
-        $user = \Auth::user()->id;
-        $denuncias = Denuncia::orderBy('id','desc')->paginate(15);
-        return view('lista_denuncias', ['denuncias'=>$denuncias]);
+        $denuncias = null;
+        $search = $request->search;
+        if(\Auth::user()->role != "admin"){
+            return redirect('/report/list');
+        }
+        if($search != null && $search!= ''){
+            $denuncias = Denuncia::where('created_at', 'LIKE', '%'.$request->search . '%')
+            ->orWhere('id', 'like', '%'. $request->search .'%')
+            ->orWhere('direccion', 'like','%'. $request->search . '%')
+            ->orderBy('id','desc')
+            ->paginate(15);
+
+            $denuncias->appends(['search' => $search]);
+        }else{
+            $denuncias = Denuncia::orderBy('id','desc')->paginate(15);
+        }
+
+        return view('lista_denuncias', ['denuncias'=>$denuncias, 'search'=>$search]);
     }
 
     /**

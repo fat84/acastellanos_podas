@@ -401,33 +401,33 @@
                                                                                 natural</b>)
                                                                         </li>
                                                                         <li>Si el propietario actua en calidad de <b>arrendatario</b>
-                                                                            debe presentar codia del <b>contrato de
+                                                                            debe presentar copia del <b>contrato de
                                                                                 arrendamiento</b></li>
                                                                         <li>Certificado de Libertad y Tradición vigente
                                                                             (<b>Máximo 3 meses de expedido)</b></li>
-                                                                        <li>Rut(<b>Sociedades, instituciones educativas,
+                                                                        <li>Rut(<b>Sociedades,instituciones educativas,
                                                                                 alcaldías</b>)
                                                                         </li>
                                                                         <li>Registro cámara de comercio(<b>Sociedades,
                                                                                 empresas</b>)
                                                                         </li>
                                                                         <li>Acta de nombramiento del representante
-                                                                            legal(<b>Instituciones educativas, conjuntos
-                                                                                residenciales, condominios y juntas de
+                                                                            legal(<b>Instituciones educativas,conjuntos
+                                                                                residenciales,condominios y juntas de
                                                                                 acción comunal</b>)
                                                                         </li>
                                                                         <li>Acta de posesión y credencial (<b>Alcaldes
                                                                                 municipales</b>)
                                                                         </li>
                                                                         <li>Personería jurídica (<b>Juntas de acción
-                                                                                comunal, conjuntos residenciales,
+                                                                                comunal,conjuntos residenciales,
                                                                                 condominios</b>)
                                                                         </li>
                                                                         <li>Pago de visita técnica (<b>Subdirección
                                                                                 financiera CORPONOR - primer piso)</b>
-                                                                            por su comodidad el pgao lo puede efectuar a
+                                                                            por su comodidad el pago lo puede efectuar a
                                                                             través de canales electrónicos como son:
-                                                                            Tarjetas de crédito o débito o en efectivo)
+                                                                            Tarjetas de crédito,débito o en efectivo)
                                                                         </li>
                                                                     </ul>
                                                                     <b>CUANDO SEA PARA TALA: PARA LA EJECUCCIÓN DE OBRAS
@@ -437,7 +437,7 @@
                                                                         <li>Inventario forestal que incluya:
                                                                             identificación de las especies a intervenir,
                                                                             número de individuos, georreferenciación,
-                                                                            alturas, diámetro a la altura del pecho
+                                                                            alturas,diámetro a la altura del pecho
                                                                             (DAP) y volumen en M3. (<b>Empresas, Unión
                                                                                 temporal, alcaldías</b>)
                                                                         </li>

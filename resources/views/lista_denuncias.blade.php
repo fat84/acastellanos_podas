@@ -6,8 +6,20 @@
             <div class="col-md-12">
                 <div class="panel panel-success">
                     <div class="panel-heading">Lista de denuncias ciudadanas realizadas</div>
-
                     <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="pull-right">
+                                    <form class="navbar-form navbar-left" role="search" action="@if(Auth::user()->role=="admin"){{route('denuncias_admin')}}@else{{url('/report/list')}}@endif">
+                                        <div class="form-group">
+                                            <input type="text" name="search" class="form-control"
+                                                   value="@if(empty($search)==false){{$search}}@endif" placeholder="Buscar...">
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Buscar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <table class="table table-striped table-hover ">
@@ -46,7 +58,8 @@
                                             <td>{{$row->direccion}}</td>
                                             <td>{{$row->ciudad->nombre_ciudad}}</td>
                                             <td>Pendiente</td>
-                                            <td><a class="btn btn-sm btn-primary" href="{{url('/report/show',['id'=>$row->id])}}">ver</a> </td>
+                                            <td><a class="btn btn-sm btn-primary"
+                                                   href="{{url('/report/show',['id'=>$row->id])}}">ver</a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
